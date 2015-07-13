@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="project_ticket_form_view">
+            <field name="name">Project Issue Tracker Form</field>
+            <field name="priority" eval="17"/>
+            <field name="model">project.issue</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Ticket Form">
+                    <group colspan="4" col="4">
+                        <field name="id" readonly="1"/>
+                        <field name="name" readonly="1"/>
+                        <field name="user_id" readonly="1"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="General">
+                            <separator string= "Description" colspan="4"/>
+                            <field name="description" nolabel="1" colspan="4" readonly="1"/>
+                            <separator colspan="4"/>
+                            <field name="state" readonly="1"/>
+                        </page>
+                        <page string="Communication &amp; History" >
+                            <field name="message_ids" colspan="4" nolabel="1" mode="tree,form" readonly="1">
+                                <tree string="History">
+                                    <field name="display_text" string="History Information"/>
+                                </tree>
+                                <form string="History">
+                                    <group col="4" colspan="4">
+                                        <field name="email_from"/>
+                                        <field name="date"/>
+                                        <field name="email_to" widget="char" size="512"/>
+                                        <field name="email_cc" widget="char" size="512"/>
+                                        <field name="subject" colspan="4" widget="char" size="512"/>
+                                    </group>
+                                    <notebook colspan="4">
+                                        <page string="Details">
+                                            <group>
+                                                <field name="body_text" colspan="4" nolabel="1" height="250"/>
+                                            </group>
+                                        </page>
+                                        <page string="Attachments">
+                                            <field name="attachment_ids" colspan="4" readonly="1" nolabel="1"/>
+                                        </page>
+                                    </notebook>
+                                </form>
+                            </field>
+                           <separator colspan="4"/>
+                            <button string="Add Communication"
+                                name="%(crm.action_crm_add_note)d"
+                                context="{'model': 'crm.lead' }"
+                                icon="terp-document-new" type="action" />
+                        </page>
+                        <page string="Additional Info">
+                            <field name="spent_hours" />
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="project_ticket_tree_view">
+            <field name="name">Project ticket Tree</field>
+            <field name="model">project.issue</field>
+            <field name="priority" eval="17"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Ticket Tree" colors="black:state=='open';blue:state=='pending';grey:state in ('cancel', 'done')">
+                    <field name="id"/>
+                    <field name="create_date"/>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="progress" widget="progressbar" attrs="{'invisible':[('task_id','=',False)]}"/>
+                    <field name="state"/>
+                    <field name="task_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_project_ticket_filter" model="ir.ui.view">
+            <field name="name">Project ticket Search</field>
+            <field name="model">project.issue</field>
+            <field name="priority" eval="17"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Ticket Search">
+                    <group>
+                        <filter string="Current" name="current" domain="[('state','in',('open','draft'))]" help="Draft and To Do" icon="terp-check"/>
+                        <filter string="To Do" domain="[('state','=','open')]" help="To Do Issues" icon="terp-camera_test"/>
+                        <filter string="Pending" domain="[('state','=','pending')]"  help="Pending Issues" icon="terp-gtk-media-pause"/>
+                        <separator orientation="vertical"/>
+                        <filter icon="terp-go-today" string="Today" separator="1" domain="[('create_date','&gt;=',time.strftime('%%Y-%%m-%%d')),('create_date','&lt;', (datetime.date.today() + datetime.timedelta (days = 1)).strftime('%%Y-%%m-%%d'))]" help="Today's bugs" />
+                        <separator orientation="vertical"/>
+                        <field name="id"/>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="create_date"/>
+                        <field name="state"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="project_issue_form_view">
+            <field name="name">Project Issue Tracker Form</field>
+            <field name="model">project.issue</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="project_issue.project_issue_form_view"></field>
+            <field name="arch" type="xml">
+                <button string="Add Internal Note" position="replace" >
+                    <button string="Add Communication"
+                        name="%(crm.action_crm_add_note)d"
+                        context="{'model': 'crm.lead' }"
+                        icon="terp-document-new" type="action" />
+                </button>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="project_issue_form_view_notes">
+            <field name="name">project_issue_form_view_notes</field>
+            <field name="model">project.issue</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="project_issue.project_issue_form_view"></field>
+            <field name="arch" type="xml">
+                <page string="Extra Info" position="after" >
+                    <page string="Internal Notes">
+                        <field name="internal_notes" nolabel="1" colspan="4"/>
+                    </page>
+                </page>
+                <field name="working_hours_close" position="after">
+                    <field name="spent_hours" widget="float_time"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_project_customer,project.project customer,project.model_project_project,group_project_issue_customer,1,0,0,0
+access_mailgate_message_customer,mailgate_message customer,mail.model_mail_message,group_project_issue_customer,1,1,1,0
+access_project_issue_customer,project_issue customer,project_issue.model_project_issue,group_project_issue_customer,1,1,0,0
+access_ir_attachment_customer,ir_attachment customer,base.model_ir_attachment,group_project_issue_customer,1,1,1,1
+access_res_users_customer,res_users customer,base.model_res_users,group_project_issue_customer,1,0,0,0
+access_board_board_customer,board_board customer,board.model_board_board,group_project_issue_customer,1,0,0,0
+access_res_partner_customer,res_partner customer,base.model_res_partner,group_project_issue_customer,1,0,0,0
+access_project_task_customer,project_task customer,project.model_project_task,group_project_issue_customer,1,0,0,0
+access_hr_analytic_timesheet_customer,hr_analytic_timesheet customer,project_issue_sheet.model_hr_analytic_timesheet,group_project_issue_customer,1,0,0,0
+access_account_analytic_line_customer,account_analytic_line customer,analytic.model_account_analytic_line,group_project_issue_customer,1,0,0,0

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="workflow.activity" id="act_validate1">
+            <field name="wkf_id" ref="account_budget.wkf_crossovered_budget" />
+            <field name="name">validate1</field>
+            <field name="kind">function</field>
+            <field name="action">budget_validate1()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_validate2">
+            <field name="wkf_id" ref="account_budget.wkf_crossovered_budget" />
+            <field name="name">validate2</field>
+            <field name="kind">function</field>
+            <field name="action">budget_validate2()</field>
+        </record>
+
+        <record model="workflow.transition" id="t7">
+            <field name="act_from" ref="account_budget.act_confirm" />
+            <field name="act_to" ref="act_validate1" />
+            <field name="signal">validate1</field>
+        </record>
+
+        <record model="workflow.transition" id="t8">
+            <field name="act_from" ref="act_validate1" />
+            <field name="act_to" ref="act_validate2" />
+            <field name="signal">validate2</field>
+        </record>
+
+        <record model="workflow.transition" id="account_budget.t2">
+            <field name="act_from" ref="act_validate2" />
+            <field name="act_to" ref="account_budget.act_validate" />
+            <field name="signal">validate</field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"></field>
+            <field name="arch" type="xml">
+                <button name="order_confirm" position="replace">
+                    <button name="order_confirm" states="waiting_resp" string="Confirm Order" icon="gtk-apply"/>
+                    <button name="waiting_responsible" states="draft" string="Quotation Accepted" icon="gtk-apply"/>
+                </button>
+                <button name="cancel" position="replace" >
+                    <button name="cancel" states="draft,waiting_resp" string="Cancel Order" icon="gtk-cancel"/>
+                </button>
+            </field>
+        </record>
+    </data>
+</openerp>

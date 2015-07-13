@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+    	<record model="ir.ui.view" id="view_partner_form_comments">
+    	    <field name="name">partner.form.comments</field>
+	       	<field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="comment" position="before">
+                    <separator string="General Note" colspan="4"/>
+                </field>
+                <field name="comment" position="after">
+                    <separator string="List Notes" colspan="4"/>
+                    <newline/>
+                    <field name="comments_ids" string="Notes" nolabel="1" colspan="4">
+                        <tree>
+                            <field name="name" width="50"/>
+                            <field name="comment"/>
+                        </tree>
+                        <form>
+                            <field name="name" nolabel="1"/>
+                            <newline/>
+                            <field name="comment" nolabel="1"/>
+                        </form>
+                    </field>
+                </field>
+            </field>
+	    </record>
+
+	</data>
+</openerp>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="project_ticket_tree_view">
+            <field name="name">Project issue tree view</field>
+            <field name="model">project.issue</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="project_issue.project_issue_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="id" position="replace">
+                    <field name="number" string="#"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="project_ticket_form_view">
+            <field name="name">Project Issue Tracker Form</field>
+            <field name="model">project.issue</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="project_issue.project_issue_form_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="number" readonly="1" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

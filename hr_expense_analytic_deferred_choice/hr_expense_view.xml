@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_expenses_form" model="ir.ui.view">
+            <field name="name">hr.expense.form</field>
+            <field name="type">form</field>
+            <field name="model">hr.expense.expense</field>
+            <field name="inherit_id" ref="hr_expense.view_expenses_form"></field>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <group colspan="2" col="4" groups="analytic.group_analytic_accounting">
+                        <field name="deferred_analytics_id" domain="[('plan_id','&lt;&gt;',False)]"/>
+                        <button name="create_analytic_lines" type="object" string="Create analytic lines" groups="account.group_account_user"/>
+                        <button name="delete_analytic_lines" type="object" string="Delete analytic lines" groups="account.group_account_user"/>
+                    </group>
+                </field>
+                <page string="Other Info" position="after">
+                    <page string="Deferred analytic lines" groups="account.group_account_user">
+                        <field name="deferred_line_ids" nolabel="1" colspan="4"/>
+                    </page>
+                </page>
+            </field>
+        </record>
+        <record id="view_expenses_form_distribution_id" model="ir.ui.view">
+            <field name="name">hr.expense.form.distribution_id</field>
+            <field name="type">form</field>
+            <field name="model">hr.expense.expense</field>
+            <field name="inherit_id" ref="hr_analytic_plans.view_expenses_form"></field>
+            <field name="arch" type="xml">
+                <field name="distribution_id" position="after">
+                    <field name="deferred_analytics_id" groups="analytic.group_analytic_accounting" domain="[('plan_id','&lt;&gt;',False)]"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

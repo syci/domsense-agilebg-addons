@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_sent_followup" model="ir.ui.view">
+            <field name="name">Re-print Sent Follow-UP</field>
+            <field name="model">wizard.account.sent.followup</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Sent Follow-UP">
+                    <group col="2">
+                        <label string="This will print old follow-ups, using the saved level" colspan="2"/>
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="gtk-ok" name="print_sent_followup" string="Print" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+       <act_window name="Sent Follow-UP"
+            res_model="wizard.account.sent.followup"
+            src_model="account.move.line"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_wizard_sent_followup"
+            view_id="wizard_sent_followup"/>
+    </data>
+</openerp>

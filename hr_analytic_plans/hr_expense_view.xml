@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_expenses_form">
+        <field name="name">hr.expense.form.distribution_id</field>
+        <field name="model">hr.expense.expense</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="hr_expense.view_expenses_form"/>
+        <field name="arch" type="xml">
+            <field name="analytic_account" position="replace">
+                <field name="distribution_id" domain="[('plan_id','&lt;&gt;',False)]"/>
+            </field>
+        </field>
+    </record>
+
+        <record id="view_expenses_line_tree" model="ir.ui.view">
+            <field name="name">hr.expense.line.tree.distribution_id</field>
+            <field name="type">tree</field>
+            <field name="model">hr.expense.line</field>
+            <field name="inherit_id" ref="hr_expense.view_expenses_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="analytic_account" position="replace">
+                    <field name="distribution_id" domain="[('plan_id','&lt;&gt;',False)]" groups="analytic.group_analytic_accounting"/>
+                </field>
+            </field>
+        </record>
+
+</data>
+</openerp>

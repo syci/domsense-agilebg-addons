@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="subscription_alerts_tree">
+            <field name="name">subscription.alert.tree</field>
+            <field name="model">subscription.alert</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Subscription Alerts">
+                    <field name="name"/>
+                    <field name="template_id"/>
+                    <field name="days_before"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="subscription_alerts_form">
+            <field name="name">subscription.alert.form</field>
+            <field name="model">subscription.alert</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Subscription Alerts">
+                    <field name="name"/>
+                    <field name="template_id"/>
+                    <field name="days_before"/>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_subscription_alerts_tree_all">
+            <field name="name">Subscription Alerts</field>
+            <field name="res_model">subscription.alert</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="subscription_alerts_tree" />
+        </record>
+
+        <menuitem name="Subscription Alerts" id="menu_subscription_alerts_all"
+            parent="base.menu_lunch_survey_root" action="action_subscription_alerts_tree_all" />
+
+    </data>
+</openerp>
+
+
+
+
+

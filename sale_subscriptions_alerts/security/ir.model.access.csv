@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_subscription_alert","subscription.alert","model_subscription_alert","base.group_sale_salesman","1","0","0","0"
+"access_subscription_alert_manager","subscription.alert manager","model_subscription_alert","base.group_sale_manager","1","1","1","1"

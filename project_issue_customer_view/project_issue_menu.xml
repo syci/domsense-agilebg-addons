@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+    <record model="ir.actions.act_window" id="action_project_ticket">
+        <field name="name">Tickets</field>
+        <field name="res_model">project.issue</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="project_ticket_tree_view"/>
+        <field name="search_view_id" ref="view_project_ticket_filter"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_project_ticket_tree_view">
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="project_ticket_tree_view"/>
+        <field name="act_window_id" ref="action_project_ticket"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_project_ticket_form_view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="project_ticket_form_view"/>
+        <field name="act_window_id" ref="action_project_ticket"/>
+    </record>
+
+    <menuitem name="Support" id="menu_customer_support"
+	      web_icon="data/tickets-icon.png"
+              web_icon_hover="data/tickets-icon-hover.png" action="action_project_ticket"/>
+    <menuitem name="Tickets" id="menu_customer_ticket" parent="menu_customer_support"/>
+    <menuitem name="Tickets" id="menu_customer_ticket_list"  parent="menu_customer_ticket"
+            action="action_project_ticket" sequence="5"/>
+</data>
+</openerp>

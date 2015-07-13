@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wizard_account_followup" model="ir.ui.view">
+            <field name="name">wizard.account.followup.form</field>
+            <field name="model">account.followup.open</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Follow-Ups">
+                    <group colspan="4">
+                        <field name="date"/>
+                        <field name="followup_id"/>
+                    </group>
+                    <separator string="" colspan="4"/>
+                    <group colspan="4" col="6">
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="terp-gtk-go-back-rtl" string="Open Follow-Ups" name="account_followup_open_window" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_account_followup" model="ir.actions.act_window">
+            <field name="name">Open Follow-Ups</field>
+            <field name="res_model">account.followup.open</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wizard_account_followup"/>
+            <field name="target">current</field>
+        </record>
+
+        <menuitem action="action_account_followup"
+            id="menu_action_account_followup"
+          parent="account.menu_finance_periodical_processing_billing" />
+    </data>
+</openerp>

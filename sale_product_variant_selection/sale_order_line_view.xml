@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"></field>
+            <field name="arch" type="xml">
+                <field name="product_id" position="before">
+                    <field name="product_tmpl_id" on_change="pre_selection_changed(product_tmpl_id, variant_line_ids)"/>
+                    <newline/>
+                    <field name="variant_line_ids" on_change="pre_selection_changed(product_tmpl_id, variant_line_ids)" nolabel="1" colspan="5" attrs="{'readonly': [('product_tmpl_id', '=', False)]}">
+                        <tree string="Variants" editable="bottom">
+                            <field name="dimension_id"></field>
+                            <field name="option_id" domain="[('dimension_id', '=', dimension_id)]"></field>
+                        </tree>
+                        <form string="Variants" >
+                            <field name="dimension_id"></field>
+                            <field name="option_id" domain="[('dimension_id', '=', dimension_id)]"></field>
+                        </form>
+                    </field>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,58 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_double_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-02-08 16:43+0000\n"
+"PO-Revision-Date: 2012-02-08 17:44+0100\n"
+"Last-Translator: eLBati <lorenzo.battistini@domsense.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: sale_double_validation
+#: sql_constraint:sale.order:0
+msgid "Order Reference must be unique !"
+msgstr "Il riferimento ordine deve essere unico!"
+
+#. module: sale_double_validation
+#: model:ir.module.module,description:sale_double_validation.module_meta_information
+msgid ""
+"\n"
+"    This module modifies the sale workflow adding a validation step before the sale order confirmation.\n"
+"    "
+msgstr ""
+"\n"
+"    This module modifies the sale workflow adding a validation step before the sale order confirmation.\n"
+"    "
+
+#. module: sale_double_validation
+#: view:sale.order:0
+msgid "Quotation Accepted"
+msgstr "Preventivo Accettato"
+
+#. module: sale_double_validation
+#: model:ir.module.module,shortdesc:sale_double_validation.module_meta_information
+msgid "Double validation for sale orders"
+msgstr "Doppia validazione per gli ordini di vendita"
+
+#. module: sale_double_validation
+#: view:sale.order:0
+msgid "Confirm Order"
+msgstr "Conferma Ordine"
+
+#. module: sale_double_validation
+#: model:ir.model,name:sale_double_validation.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_double_validation
+#: view:sale.order:0
+msgid "Cancel Order"
+msgstr "Annulla Ordine"
+

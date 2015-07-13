@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_account_followup_followup_line_form" model="ir.ui.view">
+            <field name="name">account_followup.followup.line.form</field>
+            <field name="model">account_followup.followup.line</field>
+            <field name="inherit_id" ref="account_followup.view_account_followup_followup_line_form"></field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field  name="description" position="after">
+                    <field name="description2" colspan="4"/>
+                </field>
+            </field>
+        </record>
+
+        <menuitem id="account_followup.account_followup_print_menu" groups="base.group_no_one"/>
+
+    </data>
+</openerp>

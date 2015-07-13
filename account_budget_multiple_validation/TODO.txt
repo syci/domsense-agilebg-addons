@@ -1,0 +1,1 @@
+Allow the user to configure how many steps to add.

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="followup_report_id" model="ir.actions.report.xml">
+            <field name="name">Follow-UP</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">res.partner</field>
+            <field name="report_name">account_followup_choose_payment.followup</field>
+            <field name="report_rml">account_followup_choose_payment/templates/followup.mako</field>
+            <field name="report_type">webkit</field>
+        </record>
+    </data>
+</openerp>
+

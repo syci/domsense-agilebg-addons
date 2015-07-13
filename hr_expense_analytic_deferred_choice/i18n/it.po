@@ -1,0 +1,140 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* hr_expense_analytic_deferred_choice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-12-09 10:29+0000\n"
+"PO-Revision-Date: 2011-12-09 11:49+0100\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: hr_expense_analytic_deferred_choice
+#: code:addons/hr_expense_analytic_deferred_choice/hr_expense.py:70
+#, python-format
+msgid "You have to define a default debit account on the '%s' journal!"
+msgstr "E' necessario definire un conto di debito di default per il sezionale '%s'!"
+
+#. module: hr_expense_analytic_deferred_choice
+#: model:ir.model,name:hr_expense_analytic_deferred_choice.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Voce conto analitico"
+
+#. module: hr_expense_analytic_deferred_choice
+#: field:account.analytic.line,deferred_expense_line_id:0
+#: model:ir.model,name:hr_expense_analytic_deferred_choice.model_hr_expense_line
+msgid "Expense Line"
+msgstr "Riga spesa"
+
+#. module: hr_expense_analytic_deferred_choice
+#: field:hr.expense.expense,deferred_line_ids:0
+#: field:hr.expense.line,deferred_line_ids:0
+msgid "Analytic Lines"
+msgstr "Righe analitiche"
+
+#. module: hr_expense_analytic_deferred_choice
+#: code:addons/hr_expense_analytic_deferred_choice/hr_expense.py:66
+#, python-format
+msgid "No Analytic Journal !"
+msgstr "Nessun giornale analitico!"
+
+#. module: hr_expense_analytic_deferred_choice
+#: view:hr.expense.expense:0
+msgid "Other Info"
+msgstr "Altre informazioni"
+
+#. module: hr_expense_analytic_deferred_choice
+#: view:hr.expense.expense:0
+msgid "Create analytic lines"
+msgstr "Crea righe analitiche"
+
+#. module: hr_expense_analytic_deferred_choice
+#: model:ir.module.module,description:hr_expense_analytic_deferred_choice.module_meta_information
+msgid ""
+"User can assign the expense amount to one or more analytic accounts, subsequently (or previously) to expense confirmation.\n"
+"    The expense has a new field, containing the analytic plan to be used. The related button generates tha analytic lines, related to the expense. The expense lines have new fields too, containing the analytic plan. If the line's field is not filled, the expense's one is used.\n"
+"    On the expense form, another button allows to delete the previously generated analytic lines.\n"
+"    Every analytic line contains a reference to the expense line that generated it."
+msgstr ""
+"User can assign the expense amount to one or more analytic accounts, subsequently (or previously) to expense confirmation.\n"
+"    The expense has a new field, containing the analytic plan to be used. The related button generates tha analytic lines, related to the expense. The expense lines have new fields too, containing the analytic plan. If the line's field is not filled, the expense's one is used.\n"
+"    On the expense form, another button allows to delete the previously generated analytic lines.\n"
+"    Every analytic line contains a reference to the expense line that generated it."
+
+#. module: hr_expense_analytic_deferred_choice
+#: code:addons/hr_expense_analytic_deferred_choice/hr_expense.py:76
+#, python-format
+msgid "Expense %s and line %s have no Deferred Analytic Distribution"
+msgstr "La spesa %s e la riga %s non hanno una distribuzione analitica differita"
+
+#. module: hr_expense_analytic_deferred_choice
+#: code:addons/hr_expense_analytic_deferred_choice/hr_expense.py:62
+#, python-format
+msgid "There is no purchase journal defined for this company: \"%s\" (id:%d)"
+msgstr "Non c'è un sezionale d'acquisto definito per questa azienda: \"%s\" (id:%d)"
+
+#. module: hr_expense_analytic_deferred_choice
+#: code:addons/hr_expense_analytic_deferred_choice/hr_expense.py:67
+#, python-format
+msgid "You have to define an analytic journal on the '%s' journal!"
+msgstr "E' necessario definite un giornale analitico per il sezionale '%s'!"
+
+#. module: hr_expense_analytic_deferred_choice
+#: code:addons/hr_expense_analytic_deferred_choice/hr_expense.py:73
+#, python-format
+msgid "Analytic lines yet generated for expense %s. Remove them first"
+msgstr "Righe analitiche già generate per la fattura %s. Rimuoverle prima di crearne altre"
+
+#. module: hr_expense_analytic_deferred_choice
+#: view:hr.expense.expense:0
+msgid "Delete analytic lines"
+msgstr "Rimuovi righe analitiche"
+
+#. module: hr_expense_analytic_deferred_choice
+#: code:addons/hr_expense_analytic_deferred_choice/hr_expense.py:72
+#: code:addons/hr_expense_analytic_deferred_choice/hr_expense.py:76
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: hr_expense_analytic_deferred_choice
+#: view:hr.expense.expense:0
+msgid "Deferred analytic lines"
+msgstr "Righe analitiche differite"
+
+#. module: hr_expense_analytic_deferred_choice
+#: code:addons/hr_expense_analytic_deferred_choice/hr_expense.py:61
+#, python-format
+msgid "Error !"
+msgstr "Errore !"
+
+#. module: hr_expense_analytic_deferred_choice
+#: view:account.analytic.line:0
+#: field:account.analytic.line,deferred_expense_id:0
+#: model:ir.model,name:hr_expense_analytic_deferred_choice.model_hr_expense_expense
+msgid "Expense"
+msgstr "Spesa"
+
+#. module: hr_expense_analytic_deferred_choice
+#: model:ir.module.module,shortdesc:hr_expense_analytic_deferred_choice.module_meta_information
+msgid "Analytic Deferred Choice for Expenses"
+msgstr "Scelta analitica differita per i rimborsi spese"
+
+#. module: hr_expense_analytic_deferred_choice
+#: code:addons/hr_expense_analytic_deferred_choice/hr_expense.py:69
+#, python-format
+msgid "No Debit Account !"
+msgstr "Nessun conto di debito!"
+
+#. module: hr_expense_analytic_deferred_choice
+#: field:hr.expense.expense,deferred_analytics_id:0
+#: field:hr.expense.line,deferred_analytics_id:0
+msgid "Deferred Analytic Distribution"
+msgstr "Distribuzione analitica differita"
+

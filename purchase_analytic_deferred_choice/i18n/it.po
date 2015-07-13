@@ -1,0 +1,150 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* purchase_analytic_deferred_choice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-12-09 10:28+0000\n"
+"PO-Revision-Date: 2011-12-09 11:47+0100\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: purchase_analytic_deferred_choice
+#: field:account.analytic.line,deferred_purchase_order_line_id:0
+#: model:ir.model,name:purchase_analytic_deferred_choice.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Riga ordine d'acquisto"
+
+#. module: purchase_analytic_deferred_choice
+#: view:purchase.order:0
+msgid "Create analytic lines"
+msgstr "Crea righe analitiche"
+
+#. module: purchase_analytic_deferred_choice
+#: code:addons/purchase_analytic_deferred_choice/purchase_order.py:67
+#, python-format
+msgid "You have to define an analytic journal on the '%s' journal!"
+msgstr "E' necessario definite un giornale analitico per il sezionale '%s'!"
+
+#. module: purchase_analytic_deferred_choice
+#: code:addons/purchase_analytic_deferred_choice/purchase_order.py:70
+#, python-format
+msgid "You have to define a default debit account on the '%s' journal!"
+msgstr "E' necessario definire un conto di debito di default per il sezionale '%s'!"
+
+#. module: purchase_analytic_deferred_choice
+#: model:ir.module.module,shortdesc:purchase_analytic_deferred_choice.module_meta_information
+msgid "Analytic Deferred Choice for Purchase Orders"
+msgstr "Scelta analitica differita per gli ordini d'acquisto"
+
+#. module: purchase_analytic_deferred_choice
+#: sql_constraint:purchase.order:0
+msgid "Order Reference must be unique !"
+msgstr "Il riferimento ordine deve essere unico!"
+
+#. module: purchase_analytic_deferred_choice
+#: model:ir.model,name:purchase_analytic_deferred_choice.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Voce conto analitico"
+
+#. module: purchase_analytic_deferred_choice
+#: code:addons/purchase_analytic_deferred_choice/purchase_order.py:62
+#, python-format
+msgid "There is no purchase journal defined for this company: \"%s\" (id:%d)"
+msgstr "Non c'è un sezionale d'acquisto definito per questa azienda: \"%s\" (id:%d)"
+
+#. module: purchase_analytic_deferred_choice
+#: field:purchase.order,deferred_analytics_id:0
+#: field:purchase.order.line,deferred_analytics_id:0
+msgid "Deferred Analytic Distribution"
+msgstr "Distribuzione analitica differita"
+
+#. module: purchase_analytic_deferred_choice
+#: view:purchase.order:0
+msgid "Notes"
+msgstr "Note"
+
+#. module: purchase_analytic_deferred_choice
+#: field:purchase.order,deferred_line_ids:0
+#: field:purchase.order.line,deferred_line_ids:0
+msgid "Analytic Lines"
+msgstr "Righe analitiche"
+
+#. module: purchase_analytic_deferred_choice
+#: code:addons/purchase_analytic_deferred_choice/purchase_order.py:73
+#, python-format
+msgid "Analytic lines yet generated for order %s. Remove them first"
+msgstr "Righe analitiche già generate per la fattura %s. Rimuoverle prima di crearne altre"
+
+#. module: purchase_analytic_deferred_choice
+#: view:account.analytic.line:0
+#: field:account.analytic.line,deferred_purchase_order_id:0
+#: model:ir.model,name:purchase_analytic_deferred_choice.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine d'acquisto"
+
+#. module: purchase_analytic_deferred_choice
+#: code:addons/purchase_analytic_deferred_choice/purchase_order.py:72
+#: code:addons/purchase_analytic_deferred_choice/purchase_order.py:76
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: purchase_analytic_deferred_choice
+#: code:addons/purchase_analytic_deferred_choice/purchase_order.py:61
+#, python-format
+msgid "Error !"
+msgstr "Errore !"
+
+#. module: purchase_analytic_deferred_choice
+#: view:purchase.order:0
+msgid "Deferred analytic lines"
+msgstr "Righe analitiche differite"
+
+#. module: purchase_analytic_deferred_choice
+#: view:purchase.order:0
+msgid "Delete analytic lines"
+msgstr "Rimuovi righe analitiche"
+
+#. module: purchase_analytic_deferred_choice
+#: view:purchase.order:0
+msgid "Analytic lines"
+msgstr "Righe analitiche"
+
+#. module: purchase_analytic_deferred_choice
+#: code:addons/purchase_analytic_deferred_choice/purchase_order.py:66
+#, python-format
+msgid "No Analytic Journal !"
+msgstr "Nessun giornale analitico!"
+
+#. module: purchase_analytic_deferred_choice
+#: code:addons/purchase_analytic_deferred_choice/purchase_order.py:69
+#, python-format
+msgid "No Debit Account !"
+msgstr "Nessun conto di debito!"
+
+#. module: purchase_analytic_deferred_choice
+#: model:ir.module.module,description:purchase_analytic_deferred_choice.module_meta_information
+msgid ""
+"User can assign the invoice amount to one or more analytic accounts, subsequently (or previously) to purchase order confirmation.\n"
+"    The purchase order has a new field, containing the analytic plan to be used. The related button generates tha analytic lines, related to the order. The order lines have new fields too, containing the analytic plan. If the line's field is not filled, the order's one is used.\n"
+"    On the order form, another button allows to delete the previously generated analytic lines.\n"
+"    Every analytic line contains a reference to the order line that generated it."
+msgstr ""
+"User can assign the invoice amount to one or more analytic accounts, subsequently (or previously) to purchase order confirmation.\n"
+"    The purchase order has a new field, containing the analytic plan to be used. The related button generates tha analytic lines, related to the order. The order lines have new fields too, containing the analytic plan. If the line's field is not filled, the order's one is used.\n"
+"    On the order form, another button allows to delete the previously generated analytic lines.\n"
+"    Every analytic line contains a reference to the order line that generated it."
+
+#. module: purchase_analytic_deferred_choice
+#: code:addons/purchase_analytic_deferred_choice/purchase_order.py:76
+#, python-format
+msgid "Order %s and line %s have no Deferred Analytic Distribution"
+msgstr "L'ordine %s e la riga %s non hanno una distribuzione analitica differita"
+

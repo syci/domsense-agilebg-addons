@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_picking_out_form" model="ir.ui.view">
+            <field name="name">stock.picking.out.form</field>
+            <field name="model">stock.picking</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form"></field>
+            <field name="arch" type="xml">
+                <page string="Notes" position="after">
+                    <page string="Related">
+                        <field colspan="4" name="parent_id" />
+                        <field colspan="4" name="child_ids" nolabel="1" string="Children"/>
+                    </page>
+                </page>
+            </field>
+        </record>
+        <record id="view_picking_in_form" model="ir.ui.view">
+            <field name="name">stock.picking.in.form</field>
+            <field name="model">stock.picking</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="stock.view_picking_in_form"></field>
+            <field name="arch" type="xml">
+                <page string="Notes" position="after">
+                    <page string="Related">
+                        <field colspan="4" name="parent_id" />
+                        <field colspan="4" name="child_ids" nolabel="1" string="Children"/>
+                    </page>
+                </page>
+            </field>
+        </record>
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="stock.view_picking_form"></field>
+            <field name="arch" type="xml">
+                <page string="Notes" position="after">
+                    <page string="Related">
+                        <field colspan="4" name="parent_id" />
+                        <field colspan="4" name="child_ids" nolabel="1" string="Children"/>
+                    </page>
+                </page>
+            </field>
+        </record>
+        
+        <!-- tree -->
+        
+        <record id="view_picking_tree" model="ir.ui.view">
+            <field name="name">view_picking_tree</field>
+            <field name="model">stock.picking</field>
+            <field name="type">tree</field>
+            <field name="field_parent">child_ids</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state == 'draft';grey:state == 'cancel';red:state not in ('cancel', 'done') and date &lt; current_date" string="Picking list">
+                    <field name="name"/>
+                    <field name="partner_id" />
+                    <field name="origin"/>
+                    <field name="date"/>
+                    <field name="min_date"/>
+                    <field name="invoice_state"/>
+                    <field name="total_qty" />
+                    <field name="qty" />
+                    <field name="uom" />
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_view_out_picking_tree" model="ir.actions.act_window">
+            <field name="name">Out Delivery Tree</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="view_picking_tree"/>
+            <field name="domain">[('type','=','out'), ('parent_id','=',False)]</field>
+        </record>
+        <record id="action_view_in_picking_tree" model="ir.actions.act_window">
+            <field name="name">In Delivery Tree</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="view_picking_tree"/>
+            <field name="domain">[('type','=','in'), ('parent_id','=',False)]</field>
+        </record>
+        <record id="action_view_input_parent_picking_list" model="ir.actions.act_window">
+            <field name="name">Parent shipments</field>
+            <field name="res_model">stock.picking</field>
+            <field name="domain">[('type','=','in'), ('parent_id','=',False)]</field>
+        </record>
+        <record id="action_view_input_children_picking_list" model="ir.actions.act_window">
+            <field name="name">Children shipments</field>
+            <field name="res_model">stock.picking</field>
+            <field name="domain">[('type','=','in'), ('parent_id','!=',False)]</field>
+        </record>
+        <record id="action_view_out_parent_picking_list" model="ir.actions.act_window">
+            <field name="name">Parent orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="domain">[('type','=','out'), ('parent_id','=',False)]</field>
+        </record>
+        <record id="action_view_out_children_picking_list" model="ir.actions.act_window">
+            <field name="name">Children orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="domain">[('type','=','out'), ('parent_id','!=',False)]</field>
+        </record>
+        <menuitem action="action_view_out_picking_tree" id="menu_action_view_out_picking_tree" parent="stock.menu_stock_warehouse_mgmt" />
+        <menuitem action="action_view_in_picking_tree" id="menu_action_view_in_picking_tree" parent="stock.menu_stock_warehouse_mgmt" />
+        <menuitem action="action_view_input_parent_picking_list" id="menu_action_view_input_parent_picking_list" parent="stock.menu_action_picking_tree4" />
+        <menuitem action="action_view_input_children_picking_list" id="menu_action_view_input_children_picking_list" parent="stock.menu_action_picking_tree4" />
+        <menuitem action="action_view_out_parent_picking_list" id="menu_action_view_out_parent_picking_list" parent="stock.menu_action_picking_tree" />
+        <menuitem action="action_view_out_children_picking_list" id="menu_action_view_out_children_picking_list" parent="stock.menu_action_picking_tree" />
+
+        <record id="action_picking_open" model="ir.actions.act_window">
+            <field name="name">Picking</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('id','=',active_id)]</field>
+        </record>
+        <record id="ir_open_picking" model="ir.values">
+            <field name="key2">tree_but_open</field>
+            <field name="model">stock.picking</field>
+            <field name="name">Picking</field>
+            <field eval="'ir.actions.act_window,%d'%action_picking_open" name="value"/>
+        </record>
+    </data>
+</openerp>

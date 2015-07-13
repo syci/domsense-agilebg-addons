@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report6" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.9965000000000006"/>
+	<property name="ireport.x" value="45"/>
+	<property name="ireport.y" value="148"/>
+	<parameter name="from_account" class="java.lang.String">
+		<defaultValueExpression><![CDATA[10]]></defaultValueExpression>
+	</parameter>
+	<parameter name="to_account" class="java.lang.String">
+		<defaultValueExpression><![CDATA[11]]></defaultValueExpression>
+	</parameter>
+	<parameter name="from_date" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="to_date" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="lingua" class="java.lang.String">
+		<defaultValueExpression><![CDATA[en_EN]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+    move_date,
+    move_name,
+    move_ref,
+    line_name,
+    line_ref,
+    journal_code,
+    account_code,
+    account_name,
+
+    invoice_number,
+    credit,
+    debit,
+    end_credit,
+    end_debit,
+    end_credit - end_debit as end_balance,
+    end_credit - sum(credit) over(partition by account_code) as start_credit,
+    end_debit - sum(debit) over(partition by account_code) as start_debit,
+    end_credit - end_debit - sum(credit) over(partition by account_code) + sum(debit) over(partition by account_code) as start_balance,
+    partner_name
+
+
+from
+(
+    select
+        account_move.date as move_date,
+        coalesce(account_invoice.number,'') as invoice_number,
+        account_account.name as account_name,
+        cast(account_account.code as character varying) as account_code,
+        account_account.id as account_id,
+        account_move_line.credit as credit,
+        account_move_line.debit as debit,
+        sum(account_move_line.credit) over(partition by account_move_line.account_id) as end_credit,
+        sum(account_move_line.debit) over(partition by account_move_line.account_id) as end_debit,
+        account_journal.code as journal_code,
+        res_partner.name as partner_name,
+        account_move.name as move_name,
+        account_move.ref as move_ref,
+        account_move_line.name as line_name,
+        account_move_line.ref as line_ref
+
+
+    from account_move_line
+    join account_account
+        on account_move_line.account_id = account_account.id
+    join account_move
+        on account_move_line.move_id = account_move.id
+    join account_journal
+        on account_move.journal_id = account_journal.id
+    left join account_invoice
+        on account_move.id = account_invoice.move_id
+    left join res_partner
+        on account_move_line.partner_id = res_partner.id
+    where
+        account_move.date <= to_date($P{to_date}, 'YYYY-MM-DD')
+) x
+where
+    move_date >= to_date($P{from_date},'YYYY-MM-DD')
+    and account_code between $P{from_account} and $P{to_account}
+
+order by
+    account_code,
+    move_date]]>
+	</queryString>
+	<field name="move_date" class="java.sql.Date"/>
+	<field name="move_ref" class="java.lang.String"/>
+	<field name="move_name" class="java.lang.String"/>
+	<field name="line_ref" class="java.lang.String"/>
+	<field name="line_name" class="java.lang.String"/>
+	<field name="account_code" class="java.lang.String"/>
+	<field name="account_name" class="java.lang.String"/>
+	<field name="journal_code" class="java.lang.String"/>
+	<field name="invoice_number" class="java.lang.String"/>
+	<field name="credit" class="java.math.BigDecimal"/>
+	<field name="debit" class="java.math.BigDecimal"/>
+	<field name="end_credit" class="java.math.BigDecimal"/>
+	<field name="end_debit" class="java.math.BigDecimal"/>
+	<field name="end_balance" class="java.math.BigDecimal"/>
+	<field name="start_credit" class="java.math.BigDecimal"/>
+	<field name="start_debit" class="java.math.BigDecimal"/>
+	<field name="start_balance" class="java.math.BigDecimal"/>
+	<field name="partner_name" class="java.lang.String"/>
+	<variable name="soggetto_d_1" class="java.math.BigDecimal" resetType="Group" resetGroup="gruppo-account" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit}]]></variableExpression>
+	</variable>
+	<variable name="soggetto_a_1" class="java.math.BigDecimal" resetType="Group" resetGroup="gruppo-account" calculation="Sum">
+		<variableExpression><![CDATA[$F{credit}]]></variableExpression>
+	</variable>
+	<group name="gruppo-account">
+		<groupExpression><![CDATA[$F{account_name}]]></groupExpression>
+		<groupHeader>
+			<band height="45">
+				<textField>
+					<reportElement mode="Opaque" x="0" y="5" width="555" height="19" backcolor="#D7D0D0"/>
+					<box>
+						<pen lineColor="#111108"/>
+						<topPen lineWidth="0.5" lineColor="#111108"/>
+						<leftPen lineWidth="0.5" lineColor="#111108"/>
+						<bottomPen lineWidth="0.5" lineColor="#111108"/>
+						<rightPen lineWidth="0.5" lineColor="#111108"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Account " + $F{account_code} + ": " + $F{account_name}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="375" y="24" width="60" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{start_debit}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="435" y="24" width="60" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{start_credit}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="110" y="24" width="205" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Initial balance on " +new SimpleDateFormat('dd-MM-yyyy').format(new SimpleDateFormat("yyyy-MM-dd").parse($P{from_date}))]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="495" y="24" width="60" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{start_debit} - $F{start_credit}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField pattern="#,##0.00">
+					<reportElement x="435" y="0" width="60" height="20"/>
+					<box>
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{end_credit}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="110" y="0" width="205" height="20"/>
+					<box>
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA["End balance on " + new SimpleDateFormat('dd-MM-yyyy').format(new SimpleDateFormat("yyyy-MM-dd").parse($P{to_date}))]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="495" y="0" width="60" height="20"/>
+					<box>
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{end_debit} - $F{end_credit}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="375" y="0" width="60" height="20"/>
+					<box>
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{end_debit}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="34"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Account Statement from " + new SimpleDateFormat('dd-MM-yyyy').format(new SimpleDateFormat("yyyy-MM-dd").parse($P{from_date})) + " to " + new SimpleDateFormat('dd-MM-yyyy').format(new SimpleDateFormat("yyyy-MM-dd").parse($P{to_date}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="495" y="17" width="60" height="20"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="17" width="60" height="20"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Credit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="17" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Debit]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="7" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField pattern="#,##0.00">
+				<reportElement x="375" y="0" width="60" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{debit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="60" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{move_date}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="435" y="0" width="60" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{credit}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="265" y="0" width="60" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{journal_code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="0" width="65" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{line_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="175" y="0" width="90" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partner_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="40" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{move_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="325" y="0" width="50" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{move_ref}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="8" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="414" y="2" width="139" height="20"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of " + $V{PAGE_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="2" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Printed on:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="110" y="2" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="12" splitType="Stretch"/>
+	</summary>
+</jasperReport>

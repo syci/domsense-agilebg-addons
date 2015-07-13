@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <menuitem icon="terp-administration" id="menu_email_hosting"
+                  name="Email Hosting" sequence="50"
+                  web_icon="data/email.png"
+                  web_icon_hover="data/email-hover.png"/>
+        <menuitem name="Email Hosting" id="menu_email_hosting_elements" parent="menu_email_hosting"/>
+
+		<record id="view_eh_virtual_tree" model="ir.ui.view">
+	            <field name="name">email.hosting.virtual.tree</field>
+				<field name="model">email.hosting.virtual</field>
+	            <field name="type">tree</field>
+	            <field name="arch" type="xml">
+	                <tree string="Virtuals">
+	                	<field name="address"/>
+	                	<field name="userid"/>
+	                </tree>
+	            </field>
+	     </record>
+
+		<record id="view_eh_virtual_form" model="ir.ui.view">
+	            <field name="name">email.hosting.virtual.form</field>
+				<field name="model">email.hosting.virtual</field>
+	            <field name="type">form</field>
+	            <field name="arch" type="xml">
+	                <form string="Virtual">
+	                	<field name="address"/>
+	                	<field name="userid"/>
+	                </form>
+	            </field>
+	     </record>
+	    
+	     <record id="action_eh_virtual" model="ir.actions.act_window">
+	            <field name="name">Virtuals</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">email.hosting.virtual</field>
+			<field name="view_type">form</field>
+	     </record>
+
+	     <menuitem action="action_eh_virtual" id="menu_email_hosting_virtual" parent="menu_email_hosting_elements"/>
+
+		<record id="view_eh_transport_tree" model="ir.ui.view">
+	            <field name="name">email.hosting.transport.tree</field>
+				<field name="model">email.hosting.transport</field>
+	            <field name="type">tree</field>
+	            <field name="arch" type="xml">
+	                <tree string="Transports">
+	                	<field name="domain"/>
+	                	<field name="transport"/>
+	                </tree>
+	            </field>
+	     </record>
+
+		<record id="view_eh_transport_form" model="ir.ui.view">
+	            <field name="name">email.hosting.transport.form</field>
+				<field name="model">email.hosting.transport</field>
+	            <field name="type">form</field>
+	            <field name="arch" type="xml">
+	                <form string="Virtual">
+	                	<field name="domain"/>
+	                	<field name="transport"/>
+	                </form>
+	            </field>
+	     </record>
+	    
+	     <record id="action_eh_transport" model="ir.actions.act_window">
+	            <field name="name">Transports</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">email.hosting.transport</field>
+			<field name="view_type">form</field>
+	     </record>
+	     
+	     <menuitem action="action_eh_transport" id="menu_email_hosting_transport" parent="menu_email_hosting_elements"/>
+
+		<record id="view_eh_users_tree" model="ir.ui.view">
+	            <field name="name">email.hosting.users.tree</field>
+				<field name="model">email.hosting.users</field>
+	            <field name="type">tree</field>
+	            <field name="arch" type="xml">
+	                <tree string="Users">
+	                	<field name="userid"/>
+	                	<field name="realname"/>
+	                </tree>
+	            </field>
+	     </record>
+
+		<record id="view_eh_users_form" model="ir.ui.view">
+	            <field name="name">email.hosting.users.form</field>
+				<field name="model">email.hosting.users</field>
+	            <field name="type">form</field>
+	            <field name="arch" type="xml">
+	                <form string="User">
+	                	<field name="userid"/>
+	                	<field name="password"/>
+	                	<field name="realname"/>
+	                	<field name="uid"/>
+	                	<field name="gid"/>
+	                	<field name="home"/>
+	                	<field name="mail"/>
+	                </form>
+	            </field>
+	     </record>
+	    
+	     <record id="action_eh_users" model="ir.actions.act_window">
+	            <field name="name">Users</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">email.hosting.users</field>
+			<field name="view_type">form</field>
+	     </record>
+	     
+	     <menuitem action="action_eh_users" id="menu_email_hosting_users" parent="menu_email_hosting_elements"/>
+	     
+
+    </data>
+</openerp>

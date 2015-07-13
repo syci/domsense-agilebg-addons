@@ -1,0 +1,17 @@
+<openerp>
+	<data>
+
+        <record model="ir.ui.view" id="sale_choose_journal_sale_order">
+            <field name="name">sale.order.choose.journal.view.form</field>
+            <field name="type">form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <field name="shipped" position="after">
+                    <field name="journal_id" widget="selection" 
+	                    groups="account.group_account_invoice"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

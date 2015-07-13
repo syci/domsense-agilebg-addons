@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+product_select_variant_line,product_select_variant_line,model_product_select_variant_line,account.group_account_invoice,1,1,1,1
+product_select_variant_line_user,product_select_variant_line user,model_product_select_variant_line,base.group_user,1,0,0,0
+product_select_variant_line_accountant,product_select_variant_line accountant,model_product_select_variant_line,account.group_account_user,1,0,0,0

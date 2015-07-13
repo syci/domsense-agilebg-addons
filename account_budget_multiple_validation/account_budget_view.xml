@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="crossovered_budget_view_form" model="ir.ui.view">
+            <field name="name">crossovered.budget.view.form</field>
+            <field name="model">crossovered.budget</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_budget.crossovered_budget_view_form"></field>
+            <field name="arch" type="xml">
+                <button name="validate" position="replace">
+                    <button string="First approval" name="validate1" states="confirm" type="workflow" icon="gtk-ok"/>
+                    <button string="Second approval" name="validate2" states="validate1" type="workflow" icon="gtk-ok"/>
+                    <button string="Final approval" name="validate" states="validate2" type="workflow" icon="gtk-ok"/>
+                </button>
+                <field name="validating_user_id" position="before">
+                    <field name="validating1_user_id"/>
+                    <field name="validating2_user_id"/>
+                </field>
+                <button name="cancel" position="replace" >
+                    <button string="Cancel" name="cancel" states="confirm,validate1,validate2,validate" type="workflow" icon="gtk-cancel"/>
+                </button>
+            </field>
+        </record>
+    </data>
+</openerp>

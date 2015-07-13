@@ -1,0 +1,139 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* project_issue_customer_view
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-03-16 08:04+0000\n"
+"PO-Revision-Date: 2012-03-16 08:04+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "To Do"
+msgstr "Da fare"
+
+#. module: project_issue_customer_view
+#: model:ir.ui.menu,name:project_issue_customer_view.menu_customer_support
+msgid "Support"
+msgstr "Supporto"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Current"
+msgstr "Attuale"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Details"
+msgstr "Dettagli"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Pending Issues"
+msgstr "Problematiche in sospeso"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Pending"
+msgstr "In sospeso"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Ticket Tree"
+msgstr "Lista ticket"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Communication & History"
+msgstr "Comunicazioni & Storico"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: project_issue_customer_view
+#: model:ir.model,name:project_issue_customer_view.model_project_issue
+msgid "Project Issue"
+msgstr "Problematica di progetto"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "To Do Issues"
+msgstr "To Do Issues"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Ticket Form"
+msgstr "Ticket Form"
+
+#. module: project_issue_customer_view
+#: model:ir.actions.act_window,name:project_issue_customer_view.action_project_ticket
+#: model:ir.ui.menu,name:project_issue_customer_view.menu_customer_ticket
+#: model:ir.ui.menu,name:project_issue_customer_view.menu_customer_ticket_list
+msgid "Tickets"
+msgstr "Ticket"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Add Internal Note"
+msgstr "Aggiungi nota interna"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Today"
+msgstr "Oggi"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Draft and To Do"
+msgstr "Bozza e da fare"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Add Communication"
+msgstr "Aggiungi comunicazione"
+
+#. module: project_issue_customer_view
+#: model:res.groups,name:project_issue_customer_view.group_project_issue_customer
+msgid "Project / Customer"
+msgstr "Progetto / Cliente"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Today's bugs"
+msgstr "I bachi di oggi"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "History"
+msgstr "Storico"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Attachments"
+msgstr "Allegati"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "General"
+msgstr "Generale"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "History Information"
+msgstr "Storico Informazioni"
+
+#. module: project_issue_customer_view
+#: view:project.issue:0
+msgid "Ticket Search"
+msgstr "Ricerca ticket"
+

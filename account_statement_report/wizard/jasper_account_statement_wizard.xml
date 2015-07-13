@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_jasper_account_statement" model="ir.ui.view">
+            <field name="name">Account Statement</field>
+            <field name="model">jasper.account.statement.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Account Statement">
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+                    <field name="from_account"/>
+                    <field name="to_account"/>
+                    <field name="show_currency" colspan="4"/>
+                    <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                <button icon="gtk-ok" name="start_report" string="Print" type="object"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jasper_account_statement" model="ir.actions.act_window">
+            <field name="name">Account Statement (Jasper)</field>
+            <field name="res_model">jasper.account.statement.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_jasper_account_statement"/>
+            <field name="target">new</field>
+            <field name="help">Prints all moves classified by Account</field>
+        </record>
+
+        <menuitem icon="STOCK_INDENT" action="action_jasper_account_statement"
+            id="menu_jasper_account_statement"
+            parent="account.final_accounting_reports" />
+
+<!--
+        <act_window name="Print"
+             res_model="company.specific.wizard"
+             src_model="account.invoice"
+             view_mode="form"
+             target="new"
+             key2="client_action_multi"
+             id="action_choose_company_specific_report"
+             />
+-->
+
+    </data>
+</openerp>

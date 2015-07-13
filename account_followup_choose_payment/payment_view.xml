@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_fups_tree" model="ir.ui.view">
+        <field name="name">Payments</field>
+        <field name="model">account.move.line</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <tree string="Payments" >
+                <field name="invoice" readonly="1"/>
+                <field name="invoice_date" readonly="1"/>
+                <field name="invoice_origin" readonly="1"/>
+                <field name="partner_id" readonly="1"/>
+                <field name="partner_ref" readonly="1"/>
+                <field name="account_id" readonly="1"/>
+                <field name="debit" readonly="1" sum="Total Debit"/>
+                <field name="date_maturity"/>
+                <field name="move_id" readonly="1"/>
+                <field name="reconcile_partial_id" readonly="1"/>
+                <field name="followup_line_id"/>
+                <field name="followup_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sent_fups">
+        <field name="name">Sent Follow-Ups</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_fups_tree"/>
+        <field name="search_view_id" ref="account_due_list.view_payments_filter"/>
+        <field name="domain">[('account_id.type','=','receivable'),('credit','=',0),('reconcile_id','=',False),('followup_line_id','!=',False)]</field>
+    </record>
+    <menuitem name="Sent Follow-Ups" parent="account.menu_finance_periodical_processing_billing" action="action_sent_fups" id="menu_action_sent_fups"/>
+</data>
+</openerp>

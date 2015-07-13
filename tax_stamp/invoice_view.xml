@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_invoice_line_form_tax_stamp">
+            <field name="name">account.invoice.line.form.tax.stamp</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <field name="price_subtotal" position="after">
+                    <field name="tax_stamp" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
