@@ -1,3 +1,5 @@
+Repo Lauchpad: https://code.launchpad.net/~domsense/domsense-agilebg-addons/6.1
+
 TO BE MIGRATED
 ==============
 
